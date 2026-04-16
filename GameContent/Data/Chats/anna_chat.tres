@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ChatData" load_steps=5 format=3 uid="uid://clov4e5f75fxj"]
+[gd_resource type="Resource" script_class="ChatData" format=3 uid="uid://clov4e5f75fxj"]
 
 [ext_resource type="Script" uid="uid://dbte7kxlkuhtf" path="res://_System/Resources/MessageData.gd" id="1_4bhi4"]
 [ext_resource type="Resource" uid="uid://lwm2mkknndkv" path="res://GameContent/Data/Contacts/anna.tres" id="1_sgpfg"]
