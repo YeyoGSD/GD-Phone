@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://f447clfv0fb1"]
+[gd_scene format=3 uid="uid://f447clfv0fb1"]
 
 [ext_resource type="Script" uid="uid://cixao8ua2cb8r" path="res://Apps/1_Chat/ChatRow/chat_row.gd" id="1_xals4"]
 [ext_resource type="Texture2D" uid="uid://fi042hb8xr13" path="res://_Assets/Image/Avatars 256x256/default_avatar.png" id="1_yf8o3"]
 
-[node name="ChatRow" type="Button"]
+[node name="ChatRow" type="Button" unique_id=821209446]
 custom_minimum_size = Vector2(0, 100)
 anchors_preset = 10
 anchor_right = 1.0
@@ -13,7 +13,7 @@ focus_mode = 0
 flat = true
 script = ExtResource("1_xals4")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=24932763]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,10 +25,10 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=932409669]
 layout_mode = 2
 
-[node name="Avatar" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+[node name="Avatar" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=1183089587]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
@@ -36,25 +36,24 @@ texture = ExtResource("1_yf8o3")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="ChatInfo" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="ChatInfo" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=214906337]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="NameLabel" type="Label" parent="MarginContainer/HBoxContainer/ChatInfo"]
+[node name="NameLabel" type="Label" parent="MarginContainer/HBoxContainer/ChatInfo" unique_id=952143619]
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"HeaderLarge"
 text = "Nombre"
 
-[node name="PreviewLabel" type="Label" parent="MarginContainer/HBoxContainer/ChatInfo"]
+[node name="PreviewLabel" type="Label" parent="MarginContainer/HBoxContainer/ChatInfo" unique_id=1875928758]
 unique_name_in_owner = true
 modulate = Color(0.53333336, 0.53333336, 0.53333336, 1)
 layout_mode = 2
-text = "Contenido del mensaje"
 text_overrun_behavior = 5
 
-[node name="TimeLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+[node name="TimeLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1292711708]
 modulate = Color(0.7371929, 0.737193, 0.73719275, 1)
 layout_mode = 2
 text = "12:00"

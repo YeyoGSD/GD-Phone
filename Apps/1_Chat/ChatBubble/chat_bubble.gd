@@ -1,9 +1,6 @@
 class_name ChatBubble
 extends PanelContainer
 
-const MEDIA_PAUSE_ICON := preload("uid://c3q11d80ei1d3")
-const MEDIA_PLAY_ICON := preload("uid://cgvlgswhkb262")
-
 @onready var message_label: Label = %MessageLabel
 @onready var photo_rect: TextureRect = %PhotoRect
 @onready var audio_player: AudioStreamPlayer = %AudioPlayer
@@ -12,12 +9,15 @@ const MEDIA_PLAY_ICON := preload("uid://cgvlgswhkb262")
 @onready var audio_slider: HSlider = %AudioSlider
 @onready var link_button: Button = %LinkButton
 
-@export var max_width_ratio: float = 0.75
-@onready var max_allowed_width: float = get_viewport_rect().size.x * max_width_ratio
+@onready var max_allowed_width: float = get_viewport_rect().size.x * 0.75
+
+const MEDIA_PAUSE_ICON := preload("uid://c3q11d80ei1d3")
+const MEDIA_PLAY_ICON := preload("uid://cgvlgswhkb262")
 
 var link_data: WebpageData
 var saved_playback_pos: float = 0.0
 var is_dragging_slider: bool = false
+
 
 func setup(msg: String, audio: AudioStream, photo:Texture2D, webpage_data: WebpageData) -> void:
 	message_label.text = msg
@@ -33,6 +33,10 @@ func setup(msg: String, audio: AudioStream, photo:Texture2D, webpage_data: Webpa
 
 func _ready() -> void:
 	set_process(false)
+	_connect_signals()
+
+
+func _connect_signals() -> void:
 	play_button.pressed.connect(_on_play_toggled)
 	audio_player.finished.connect(_on_audio_finished)
 	audio_slider.drag_started.connect(_on_slider_drag_started)

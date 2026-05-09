@@ -3,24 +3,22 @@ extends Button
 
 signal chat_selected(chat_data: ChatData)
 
-var chat_data: ChatData
-
 @onready var avatar: TextureRect = %Avatar
 @onready var name_label: Label = %NameLabel
 @onready var preview_label: Label = %PreviewLabel
 
+var chat_data: ChatData
+
 func setup(data: ChatData) -> void:
 	chat_data = data
-
 	name_label.text = data.contact.name
+	
 	if data.contact.avatar:
 		avatar.texture = data.contact.avatar
 	
-	if data.conversation.size() > 0:
+	if not data.conversation.is_empty():
 		var last_msg := data.conversation[-1]
 		preview_label.text = last_msg.text
-	else:
-		preview_label.text = ""
 
 
 func _pressed() -> void:
