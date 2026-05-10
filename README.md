@@ -32,7 +32,7 @@ The project is currently in early development. The focus is on building the core
 ### Phase 2
 #### Improvements & Refactoring
 - [x] Migrate chat loading to `PlayerData.gd` to treat them as unlockable and dynamic resources
-- [ ] Centralize unlock events to impact state first and then update the UI
+- [x] Centralize unlock events to impact state first and then update the UI
 - [ ] Implement message tracking for persistence and visual alerts (Badges)
 - [ ] Adapt data resources to integrate with Godot's native translation system
 #### New Features
