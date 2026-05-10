@@ -7,14 +7,14 @@ extends WebPage
 
 
 func _ready() -> void:
-	PlayerData.webpage_unlocked.connect(_on_webpage_unlocked)
-	_rebuild_tiles()
+	PlayerData.webpage_unlocked.connect(_create_bookmark_tile)
+	_load_unlocked_webpages()
 
 
-func _rebuild_tiles() -> void:
+func _load_unlocked_webpages() -> void:
 	for child in bookmarks_grid.get_children():
 		child.queue_free()
-
+	
 	for webpage in PlayerData.unlocked_webpages:
 		_create_bookmark_tile(webpage)
 
@@ -25,7 +25,3 @@ func _create_bookmark_tile(webpage: WebpageData) -> void:
 	tile.setup(webpage.icon, webpage.title)
 	tile.pressed.connect(func() -> void:
 		navigate_to_url_requested.emit(webpage.url))
-
-
-func _on_webpage_unlocked(_new_webpage: WebpageData) -> void:
-	_rebuild_tiles()

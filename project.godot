@@ -24,8 +24,8 @@ config/icon="res://icon.svg"
 GlobalClock="*res://_System/_Autoloads/global_clock.gd"
 SignalBus="*res://_System/_Autoloads/signal_bus.gd"
 EventManager="*res://_System/_Autoloads/event_manager.gd"
-PlayerData="*res://_System/_Autoloads/player_data.gd"
 WebManager="*uid://d1ad11xisnxut"
+PlayerData="*uid://chl4nko4antgn"
 
 [debug]
 

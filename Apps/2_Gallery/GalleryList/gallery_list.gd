@@ -9,13 +9,17 @@ signal requested_view_photo(photo_data: PhotoData)
 @onready var photo_grid: GridContainer = %PhotoGrid
 
 
-func _connect_signals() -> void:
-	PlayerData.photo_unlocked.connect(_on_photo_unlocked)
-
-
 func _ready() -> void:
-	_connect_signals()
+	PlayerData.photo_unlocked.connect(_create_thumbnail)
 	_load_unlocked_photos()
+
+
+func _load_unlocked_photos() -> void:
+	for child in photo_grid.get_children():
+		child.queue_free()
+	
+	for photo_data in PlayerData.unlocked_photos:
+		_create_thumbnail(photo_data)
 
 
 func _get_cell_width() -> float:
@@ -27,21 +31,9 @@ func _get_cell_width() -> float:
 	return (screen_width - margins_width - grid_separation) / columns
 
 
-func _load_unlocked_photos() -> void:
-	for child in photo_grid.get_children():
-		child.queue_free()
-
-	for photo_data in PlayerData.unlocked_photos:
-		_create_thumbnail(photo_data)
-
-
 func _create_thumbnail(photo_data: PhotoData) -> void:
 	var thumb := THUMBNAIL_SCENE.instantiate() as PhotoThumbnail
 	photo_grid.add_child(thumb)
 	thumb.setup(photo_data, _get_cell_width())
 	thumb.pressed.connect(func() -> void:
 		requested_view_photo.emit(photo_data))
-
-
-func _on_photo_unlocked(photo_data: PhotoData) -> void:
-	_create_thumbnail(photo_data)
