@@ -1,11 +1,11 @@
-[gd_resource type="Resource" script_class="StoryEvent" load_steps=3 format=3 uid="uid://2vka83hve84a"]
+[gd_resource type="Resource" script_class="StoryEvent" format=3 uid="uid://2vka83hve84a"]
 
 [ext_resource type="Script" uid="uid://dofwkmp0uh75t" path="res://_System/Resources/StoryEvent.gd" id="1_ohpsq"]
 [ext_resource type="Resource" uid="uid://dcb0bjeeoa2re" path="res://GameContent/Data/Notifications/test.tres" id="2_h0nqf"]
 
 [resource]
 script = ExtResource("1_ohpsq")
-type = 3
+type = 2
 delay = 5.0
 target_resource = ExtResource("2_h0nqf")
 metadata/_custom_type_script = "uid://dofwkmp0uh75t"

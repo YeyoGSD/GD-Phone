@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StoryEvent" load_steps=3 format=3 uid="uid://bl33yeocr7lh5"]
+[gd_resource type="Resource" script_class="StoryEvent" format=3 uid="uid://bl33yeocr7lh5"]
 
 [ext_resource type="Script" uid="uid://dofwkmp0uh75t" path="res://_System/Resources/StoryEvent.gd" id="1_u62xm"]
 [ext_resource type="Resource" uid="uid://lwm2mkknndkv" path="res://GameContent/Data/Contacts/anna.tres" id="2_aposi"]

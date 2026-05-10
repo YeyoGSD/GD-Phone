@@ -12,9 +12,8 @@ func _connect_signals() -> void:
 		_open_app(home_scene))
 	SignalBus.open_app_requested.connect(_open_app)
 	SignalBus.open_webpage_requested.connect(_open_webpage)
-	EventManager.trigger_call.connect(_on_event_call)
-	EventManager.trigger_photo_unlock.connect(_on_event_photo_unlocked)
-	EventManager.trigger_notification.connect(_on_event_notification)
+	PlayerData.call_registered.connect(_on_call_registered)
+	PlayerData.notification_requested.connect(_on_notification_requested)
 
 
 func _ready() -> void:
@@ -34,20 +33,16 @@ func _clear_app_container() -> void:
 		child.queue_free()
 
 
-func _open_webpage(data: WebpageData) -> void:
+func _open_webpage(webpage: WebpageData) -> void:
 	const WEB_BROWSER_SCENE = preload("uid://c15x2ptcs1e2l")
 	var browser := _open_app(WEB_BROWSER_SCENE) as WebBrowserApp
-	browser.navigate_to_page(data)
-	PlayerData.unlock_webpage(data)
+	browser.navigate_to_page(webpage)
+	PlayerData.unlock_webpage(webpage)
 
 
-func _on_event_call(contact: ContactData, voice_audio: AudioStream) -> void:
-	call_screen.start_call(contact, voice_audio)
+func _on_call_registered(contact: ContactData, audio: AudioStream) -> void:
+	call_screen.start_call(contact, audio)
 
 
-func _on_event_photo_unlocked(photo_data: PhotoData) -> void:
-	PlayerData.add_photo(photo_data)
-
-
-func _on_event_notification(notification_data: NotificationData) -> void:
+func _on_notification_requested(notification_data: NotificationData) -> void:
 	notification_banner.show_notification(notification_data)

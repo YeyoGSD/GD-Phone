@@ -8,19 +8,24 @@ signal requested_open_chat(data: ChatData)
 @onready var chats_container: VBoxContainer = %ChatsContainer
 
 func _ready() -> void:
+	PlayerData.chat_unlocked.connect(_create_row)
+	_load_unlocked_chats()
+
+
+func _load_unlocked_chats() -> void:
 	for child in chats_container.get_children():
 		child.queue_free()
 	
 	for chat in PlayerData.unlocked_chats:
-		create_row(chat)
+		_create_row(chat)
 
 
-func create_row(data: ChatData) -> void:
+func _create_row(data: ChatData) -> void:
 	var new_row := chat_row_scene.instantiate() as ChatRow
 	chats_container.add_child(new_row)
 	new_row.setup(data)
 	new_row.chat_selected.connect(_on_chat_selected)
 
 
-func _on_chat_selected(data: ChatData) -> void:
-	requested_open_chat.emit(data)
+func _on_chat_selected(chat: ChatData) -> void:
+	requested_open_chat.emit(chat)
