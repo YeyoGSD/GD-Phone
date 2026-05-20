@@ -8,5 +8,5 @@
 [resource]
 script = ExtResource("2_pejcp")
 contact = ExtResource("1_sgpfg")
-conversation = Array[ExtResource("1_4bhi4")]([ExtResource("2_lkk1x")])
+intial_conversation = Array[ExtResource("1_4bhi4")]([ExtResource("2_lkk1x")])
 metadata/_custom_type_script = "uid://r6alea8oi7u3"

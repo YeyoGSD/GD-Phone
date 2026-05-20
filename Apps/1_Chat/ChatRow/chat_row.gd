@@ -16,8 +16,8 @@ func setup(data: ChatData) -> void:
 	if data.contact.avatar:
 		avatar.texture = data.contact.avatar
 	
-	if not data.conversation.is_empty():
-		var last_msg := data.conversation[-1]
+	if not data.intial_conversation.is_empty():
+		var last_msg := data.intial_conversation[-1]
 		preview_label.text = last_msg.text
 
 

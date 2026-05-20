@@ -5,11 +5,18 @@ signal webpage_unlocked(new_webpage: WebpageData)
 signal chat_unlocked(new_chat: ChatData)
 signal call_registered(new_call: ContactData, audio: AudioStream)
 signal notification_requested(new_notifiction: NotificationData)
+signal new_message_registered(chat: ChatData, msg: MessageData)
 
 @export var unlocked_photos: Array[PhotoData]
 @export var unlocked_webpages: Array[WebpageData]
 @export var unlocked_chats: Array[ChatData]
 @export var call_history: Array[ContactData]
+@export var chats_history: Dictionary[ContactData, Array]
+
+
+func register_new_message(chat: ChatData, message: MessageData) -> void:
+	chats_history[chat.contact].append(message)
+	new_message_registered.emit(chat.contact, message)
 
 
 func send_notification(noti: NotificationData) -> void:
