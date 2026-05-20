@@ -11,12 +11,22 @@ signal new_message_registered(chat: ChatData, msg: MessageData)
 @export var unlocked_webpages: Array[WebpageData]
 @export var unlocked_chats: Array[ChatData]
 @export var call_history: Array[ContactData]
-@export var chats_history: Dictionary[ContactData, Array]
+@export var chats_history: Dictionary[ChatData, Array]
+
+
+func get_or_add_chat_history(chat: ChatData, initial_messages: Array[MessageData]) -> Array[MessageData]:
+	return chats_history.get_or_add(chat, initial_messages)
+
+
+func get_last_message_from_chat(chat: ChatData) -> MessageData:
+	if chats_history.has(chat):
+		return chats_history.get(chat)[-1]
+	return null
 
 
 func register_new_message(chat: ChatData, message: MessageData) -> void:
-	chats_history[chat.contact].append(message)
-	new_message_registered.emit(chat.contact, message)
+	chats_history[chat].append(message)
+	new_message_registered.emit(chat, message)
 
 
 func send_notification(noti: NotificationData) -> void:

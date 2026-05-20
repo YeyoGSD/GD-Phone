@@ -29,12 +29,9 @@ func setup(data: ChatData) -> void:
 	for child in messages_container.get_children():
 		child.queue_free()
 	
-	var chat := PlayerData.chats_history.get_or_add(
-		data.contact, data.intial_conversation) as Array[MessageData]
-	
+	var chat := PlayerData.get_or_add_chat_history(data, data.intial_conversation)
 	for msg in chat:
 		_add_message_bubble(msg)
-	
 	if not chat[-1].reply_options.is_empty():
 		_show_options(chat[-1].reply_options)
 	
@@ -42,10 +39,11 @@ func setup(data: ChatData) -> void:
 
 func _ready() -> void:
 	back_button.pressed.connect(_on_back_button_pressed)
-	type_box.text_submitted.connect(_on_text_submitted)
+	type_box.text_submitted.connect(func (_new_text: String) -> void:
+		_on_text_submitted())
 	send_button.pressed.connect(_on_send_pressed)
-	PlayerData.new_message_registered.connect(func (contact: ContactData, msg: MessageData) -> void:
-		if contact == current_chat.contact:
+	PlayerData.new_message_registered.connect(func (chat: ChatData, msg: MessageData) -> void:
+		if chat == current_chat:
 			_add_message_bubble(msg))
 
 
