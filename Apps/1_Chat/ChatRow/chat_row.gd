@@ -17,6 +17,8 @@ func setup(data: ChatData) -> void:
 		avatar.texture = data.contact.avatar
 	
 	var last_msg := PlayerData.get_last_message_from_chat(data)
+	if not last_msg:
+		last_msg = data.intial_conversation[-1]
 	if last_msg:
 		preview_label.text = last_msg.text
 

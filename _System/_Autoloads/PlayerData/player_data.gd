@@ -15,7 +15,7 @@ signal new_message_registered(chat: ChatData, msg: MessageData)
 
 
 func get_or_add_chat_history(chat: ChatData, initial_messages: Array[MessageData]) -> Array[MessageData]:
-	return chats_history.get_or_add(chat, initial_messages)
+	return chats_history.get_or_add(chat, initial_messages.duplicate())
 
 
 func get_last_message_from_chat(chat: ChatData) -> MessageData:
@@ -25,7 +25,8 @@ func get_last_message_from_chat(chat: ChatData) -> MessageData:
 
 
 func register_new_message(chat: ChatData, message: MessageData) -> void:
-	chats_history[chat].append(message)
+	var history := get_or_add_chat_history(chat, chat.intial_conversation)
+	history.append(message)
 	new_message_registered.emit(chat, message)
 
 
