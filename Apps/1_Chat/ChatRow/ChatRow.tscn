@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cixao8ua2cb8r" path="res://Apps/1_Chat/ChatRow/chat_row.gd" id="1_xals4"]
 [ext_resource type="Texture2D" uid="uid://fi042hb8xr13" path="res://_Assets/Image/Avatars 256x256/default_avatar.png" id="1_yf8o3"]
+[ext_resource type="PackedScene" uid="uid://l5pq4b2cidil" path="res://_System/Badge/Badge.tscn" id="3_6qku7"]
 
 [node name="ChatRow" type="Button" unique_id=821209446]
 custom_minimum_size = Vector2(0, 100)
@@ -52,6 +53,10 @@ unique_name_in_owner = true
 modulate = Color(0.53333336, 0.53333336, 0.53333336, 1)
 layout_mode = 2
 text_overrun_behavior = 5
+
+[node name="Badge" parent="MarginContainer/HBoxContainer" unique_id=688647172 instance=ExtResource("3_6qku7")]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="TimeLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1292711708]
 modulate = Color(0.7371929, 0.737193, 0.73719275, 1)

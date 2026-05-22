@@ -20,6 +20,7 @@ var current_chat: ChatData
 
 
 func setup(data: ChatData) -> void:
+	PlayerData.active_chat = data
 	current_chat = data
 	name_label.text = data.contact.name
 	
@@ -30,12 +31,16 @@ func setup(data: ChatData) -> void:
 		child.queue_free()
 	
 	var chat := PlayerData.get_or_add_chat_history(data, data.intial_conversation)
+	if chat.is_empty():
+		return
 	for msg in chat:
 		_add_message_bubble(msg)
 	if not chat[-1].reply_options.is_empty():
 		_show_options(chat[-1].reply_options)
 	
 	_scroll_to_bottom()
+	PlayerData.mark_chat_as_read(current_chat)
+
 
 func _ready() -> void:
 	back_button.pressed.connect(_on_back_button_pressed)
@@ -45,6 +50,10 @@ func _ready() -> void:
 	PlayerData.new_message_registered.connect(func (chat: ChatData, msg: MessageData) -> void:
 		if chat == current_chat:
 			_add_message_bubble(msg))
+
+
+func _exit_tree() -> void:
+	PlayerData.active_chat = null
 
 
 func _add_message_bubble(msg_data: MessageData) -> void:
@@ -140,6 +149,7 @@ func _on_option_selected(option: ReplyOption) -> void:
 
 
 func _on_back_button_pressed() -> void:
+	PlayerData.active_chat = null
 	requested_go_back.emit()
 
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cudkmk2hvfj57"]
+[gd_scene format=3 uid="uid://cudkmk2hvfj57"]
 
 [ext_resource type="Script" uid="uid://b8kpa6q7v1l80" path="res://Apps/0_Home/AppIcon/app_icon.gd" id="1_efdvt"]
+[ext_resource type="PackedScene" uid="uid://l5pq4b2cidil" path="res://_System/Badge/Badge.tscn" id="2_t3582"]
 
-[node name="AppIcon" type="Button"]
+[node name="AppIcon" type="Button" unique_id=68157717]
 custom_minimum_size = Vector2(200, 220)
 offset_right = 8.0
 offset_bottom = 8.0
@@ -14,3 +15,18 @@ icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
 script = ExtResource("1_efdvt")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=529658789]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -48.0
+offset_bottom = 48.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+
+[node name="Badge" parent="MarginContainer" unique_id=688647172 instance=ExtResource("2_t3582")]
+unique_name_in_owner = true
+layout_mode = 2
