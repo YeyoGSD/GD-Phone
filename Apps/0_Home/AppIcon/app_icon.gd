@@ -2,7 +2,7 @@ class_name AppIcon
 extends Button
 
 @export var app_scene: PackedScene
-@export var app: HomeApp.Apps
+@export var app: App.Type
 
 @onready var badge: Badge = %Badge
 
@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func _update_badge() -> void:
 	var count: int
-	if app == HomeApp.Apps.CHAT:
+	if app == App.Type.CHAT:
 		count = PlayerData.get_total_unread_messages_count()
 	else:
 		count = PlayerData.get_unread_notification_count(app)

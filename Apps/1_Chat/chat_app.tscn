@@ -12,6 +12,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4dmd4")
+app_type = 1
 
 [node name="ChatList" parent="." unique_id=2001085883 instance=ExtResource("1_pchu2")]
 layout_mode = 1

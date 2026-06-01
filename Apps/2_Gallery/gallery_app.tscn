@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cabx0s08jbd7k"]
+[gd_scene format=3 uid="uid://cabx0s08jbd7k"]
 
 [ext_resource type="Script" uid="uid://drcunfsic6kfr" path="res://Apps/2_Gallery/gallery_app.gd" id="1_1wjtb"]
 [ext_resource type="PackedScene" uid="uid://c5t7edwwhts5y" path="res://Apps/2_Gallery/GalleryList/gallery_list.tscn" id="3_c40nt"]
 [ext_resource type="PackedScene" uid="uid://bydnmqg2wvxu6" path="res://Apps/2_Gallery/PhotoViewer/photo_viewer.tscn" id="4_3n0y3"]
 
-[node name="GalleryApp" type="Control"]
+[node name="GalleryApp" type="Control" unique_id=1264462586]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,12 +12,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1wjtb")
+app_type = 2
 
-[node name="GalleryList" parent="." instance=ExtResource("3_c40nt")]
+[node name="GalleryList" parent="." unique_id=788598203 instance=ExtResource("3_c40nt")]
 unique_name_in_owner = true
 layout_mode = 1
 
-[node name="PhotoViewer" parent="." instance=ExtResource("4_3n0y3")]
+[node name="PhotoViewer" parent="." unique_id=1248354202 instance=ExtResource("4_3n0y3")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1

@@ -13,13 +13,13 @@ signal unread_notifications_count_changed()
 @export var unlocked_chats: Array[ChatData]
 @export var call_history: Array[ContactData]
 @export var chats_history: Dictionary[ChatData, Array]
-@export var unread_notifications: Dictionary[HomeApp.Apps, int]
+@export var unread_notifications: Dictionary[App.Type, int]
 @export var unread_chats_messages: Dictionary[ChatData, int]
 
 var active_chat: ChatData
 
 
-func get_unread_notification_count(app: HomeApp.Apps) -> int:
+func get_unread_notification_count(app: App.Type) -> int:
 	return unread_notifications.get(app, 0)
 
 
@@ -39,7 +39,7 @@ func mark_chat_as_read(chat: ChatData) -> void:
 	unread_notifications_count_changed.emit()
 
 
-func reset_unread_notifications_count(app: HomeApp.Apps) -> void:
+func reset_unread_notifications_count(app: App.Type) -> void:
 	unread_notifications[app] = 0
 	unread_notifications_count_changed.emit()
 
@@ -68,7 +68,7 @@ func register_new_message(chat: ChatData, message: MessageData) -> void:
 
 func send_notification(noti: NotificationData) -> void:
 	notification_requested.emit(noti)
-	if [HomeApp.Apps.NONE, HomeApp.Apps.CHAT].has(noti.app_target):
+	if [App.Type.NONE, App.Type.CHAT].has(noti.app_target):
 		return
 	unread_notifications[noti.app_target] = unread_notifications.get(noti.app_target, 0) + 1
 	unread_notifications_count_changed.emit()

@@ -1,5 +1,5 @@
 class_name WebBrowserApp
-extends Control
+extends App
 
 @onready var back_button: Button = %BackButton
 @onready var forward_button: Button = %ForwardButton
@@ -29,7 +29,7 @@ func navigate_to_page(data: WebpageData) -> void:
 	_display_page(data)
 
 
-func _ready() -> void:
+func _on_app_ready() -> void:
 	back_button.pressed.connect(_go_back)
 	forward_button.pressed.connect(_go_forward)
 	home_button.pressed.connect(_go_home)
