@@ -34,7 +34,7 @@ The project is currently in early development. The focus is on building the core
 - [x] Migrate chat loading to `PlayerData.gd` to treat them as unlockable and dynamic resources
 - [x] Centralize unlock events to impact state first and then update the UI
 - [x] Implement message tracking for persistence and visual alerts (Badges)
-- [ ] Adapt data resources to integrate with Godot's native translation system
+- [ ] Improve content creation workflow using some plugin instead of creating tons of resources
 #### New Features
 - [ ] Save & Load System
 - [ ] Video Support
