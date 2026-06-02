@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AppDefinition" format=3 uid="uid://bftl1a4ho4nfx"]
+
+[ext_resource type="Script" uid="uid://p1rgbwep1fhp" path="res://_System/Resources/AppDefinition.gd" id="1_b68tl"]
+[ext_resource type="PackedScene" uid="uid://dxh4bc7d5x1sv" path="res://Apps/0_Home/home_app.tscn" id="1_pluo5"]
+
+[resource]
+script = ExtResource("1_b68tl")
+app_name = "home"
+app_scene = ExtResource("1_pluo5")
+metadata/_custom_type_script = "uid://p1rgbwep1fhp"

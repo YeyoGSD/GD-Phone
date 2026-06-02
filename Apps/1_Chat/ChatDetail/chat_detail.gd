@@ -16,25 +16,44 @@ signal requested_go_back
 const BUBBLE_ME = preload("uid://cnmccr7wi7o5r")
 const BUBBLE_OTHER = preload("uid://dcqg1uuswi4y8")
 
+var current_chat: ChatData
 
-func setup(chat_data: ChatData) -> void:
-	name_label.text = chat_data.contact.name
+
+func setup(data: ChatData) -> void:
+	PlayerData.active_chat = data
+	current_chat = data
+	name_label.text = data.contact.name
 	
-	if chat_data.contact.avatar:
-		avatar.texture = chat_data.contact.avatar
+	if data.contact.avatar:
+		avatar.texture = data.contact.avatar
 	
 	for child in messages_container.get_children():
 		child.queue_free()
 	
-	for msg in chat_data.conversation:
+	var chat := PlayerData.get_or_add_chat_history(data, data.intial_conversation)
+	if chat.is_empty():
+		return
+	for msg in chat:
 		_add_message_bubble(msg)
+	if not chat[-1].reply_options.is_empty():
+		_show_options(chat[-1].reply_options)
 	
 	_scroll_to_bottom()
+	PlayerData.mark_chat_as_read(current_chat)
+
 
 func _ready() -> void:
 	back_button.pressed.connect(_on_back_button_pressed)
-	type_box.text_submitted.connect(_on_text_submitted)
+	type_box.text_submitted.connect(func (_new_text: String) -> void:
+		_on_text_submitted())
 	send_button.pressed.connect(_on_send_pressed)
+	PlayerData.new_message_registered.connect(func (chat: ChatData, msg: MessageData) -> void:
+		if chat == current_chat:
+			_add_message_bubble(msg))
+
+
+func _exit_tree() -> void:
+	PlayerData.active_chat = null
 
 
 func _add_message_bubble(msg_data: MessageData) -> void:
@@ -48,17 +67,23 @@ func _add_message_bubble(msg_data: MessageData) -> void:
 	messages_container.add_child(bubble)
 	bubble.setup(msg_data.text, msg_data.audio, msg_data.image, msg_data.link)
 	
-	if not msg_data.reply_options.is_empty():
-		_show_options(msg_data.reply_options)
+	if msg_data.is_read:
+		return
 	
 	if msg_data.on_read_event:
 		EventManager.execute(msg_data.on_read_event)
+	
+	msg_data.is_read = true
+
+
+func _register_message(msg: MessageData) -> void:
+	PlayerData.register_new_message(current_chat, msg)
 
 
 func _trigger_npc_reply(message: MessageData) -> void:
 	# TODO: Agregar animación de escribiendo
 	await get_tree().create_timer(message.delay).timeout
-	_add_message_bubble(message)
+	_register_message(message)
 	_scroll_to_bottom()
 	
 	if message.next_message_auto:
@@ -101,7 +126,7 @@ func _on_send_pressed() -> void:
 		return
 	
 	var new_msg := _create_message(text, MessageData.Sender.ME)
-	_add_message_bubble(new_msg)
+	_register_message(new_msg)
 	
 	type_box.text = ""
 	
@@ -111,7 +136,7 @@ func _on_send_pressed() -> void:
 func _on_option_selected(option: ReplyOption) -> void:
 	var msg := _create_message(option.text, MessageData.Sender.ME)
 	
-	_add_message_bubble(msg)
+	_register_message(msg)
 	_scroll_to_bottom()
 	
 	choice_input_container.hide()
@@ -124,6 +149,7 @@ func _on_option_selected(option: ReplyOption) -> void:
 
 
 func _on_back_button_pressed() -> void:
+	PlayerData.active_chat = null
 	requested_go_back.emit()
 
 

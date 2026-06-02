@@ -1,4 +1,4 @@
-extends Control
+extends App
 
 @onready var gallery_list: GalleryList = %GalleryList
 @onready var photo_viewer: PhotoViewer = %PhotoViewer

@@ -1,4 +1,4 @@
-extends Control
+extends App
 
 @onready var chat_list: ChatList = $ChatList
 @onready var chat_detail: ChatDetail = $ChatDetail
