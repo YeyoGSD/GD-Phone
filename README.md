@@ -33,7 +33,7 @@ The project is currently in early development. The focus is on building the core
 #### Improvements & Refactoring
 - [x] Migrate chat loading to `PlayerData.gd` to treat them as unlockable and dynamic resources
 - [x] Centralize unlock events to impact state first and then update the UI
-- [ ] Implement message tracking for persistence and visual alerts (Badges)
+- [x] Implement message tracking for persistence and visual alerts (Badges)
 - [ ] Adapt data resources to integrate with Godot's native translation system
 #### New Features
 - [ ] Save & Load System
@@ -68,6 +68,11 @@ The Web Browser loads actual Godot scenes, allowing for custom interaction.
 `StoryEvent` resources allow you to trigger actions from anywhere (e.g., from a message arrival or a button on a website).
 - **Types:** `INCOMING_CALL`, `UNLOCK_PHOTO`, `NOTIFICATION`.
 - **Usage:** Set the `Type`, the `Target Resource` (e.g., a `ContactData` for calls or `PhotoData` for unlocks), and an optional `Delay`.
+
+### 4. Adding New Apps
+1. **Create the Scene:** Create your UI scene and ensure the root node extends the base `App` class.
+2. **Create the Definition:** Create an `AppDefinition` resource (`.tres`) in `GameContent/Data/AppDefinitions/` and assign your scene to it.
+3. **Link to Home:** In the Home Screen (`home_app.tscn`), assign your new `AppDefinition` to an `AppIcon`.
 
 ## Project Structure
 
