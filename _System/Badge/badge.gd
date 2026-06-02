@@ -19,3 +19,13 @@ func set_count(count: int) -> void:
 	else:
 		number_label.text = '99+'
 	show()
+
+
+func set_dot(show_dot: bool) -> void:
+	if not show_dot:
+		current_count = 0
+		hide()
+		return
+		
+	number_label.text = ""
+	show()

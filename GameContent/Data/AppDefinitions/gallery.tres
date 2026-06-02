@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AppDefinition" format=3 uid="uid://cttne7lpy0mrj"]
+
+[ext_resource type="Script" uid="uid://p1rgbwep1fhp" path="res://_System/Resources/AppDefinition.gd" id="1_367jj"]
+[ext_resource type="PackedScene" uid="uid://cabx0s08jbd7k" path="res://Apps/2_Gallery/gallery_app.tscn" id="1_f7m66"]
+
+[resource]
+script = ExtResource("1_367jj")
+app_name = "gallery"
+app_scene = ExtResource("1_f7m66")
+metadata/_custom_type_script = "uid://p1rgbwep1fhp"

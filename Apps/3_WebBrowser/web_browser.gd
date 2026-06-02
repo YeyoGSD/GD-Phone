@@ -28,8 +28,7 @@ func navigate_to_page(data: WebpageData) -> void:
 	current_history_index = navigation_history.size() - 1
 	_display_page(data)
 
-
-func _on_app_ready() -> void:
+func _ready() -> void:
 	back_button.pressed.connect(_go_back)
 	forward_button.pressed.connect(_go_forward)
 	home_button.pressed.connect(_go_home)

@@ -8,19 +8,25 @@ signal notification_requested(new_notifiction: NotificationData)
 signal new_message_registered(chat: ChatData, msg: MessageData)
 signal unread_notifications_count_changed()
 
-@export var unlocked_photos: Array[PhotoData]
-@export var unlocked_webpages: Array[WebpageData]
-@export var unlocked_chats: Array[ChatData]
-@export var call_history: Array[ContactData]
-@export var chats_history: Dictionary[ChatData, Array]
-@export var unread_notifications: Dictionary[App.Type, int]
-@export var unread_chats_messages: Dictionary[ChatData, int]
-
+var call_history: Array[ContactData]
+var chats_history: Dictionary[ChatData, Array]
+var unread_chats_messages: Dictionary[ChatData, int]
+var unread_app_flags: Dictionary[AppDefinition, bool]
 var active_chat: ChatData
 
+var chat_app_definition: AppDefinition = preload("uid://cy2uw8ysi3bvc")
+var unlocked_chats: Array[ChatData] = [
+	preload("uid://clov4e5f75fxj"),
+]
+var unlocked_photos: Array[PhotoData] = [
+	preload("uid://vfatcsi11l20"),
+]
+var unlocked_webpages: Array[WebpageData] = [
+	preload("uid://da6j7k6txtj65"),
+]
 
-func get_unread_notification_count(app: App.Type) -> int:
-	return unread_notifications.get(app, 0)
+func has_unread_for_app(app_def: AppDefinition) -> bool:
+	return unread_app_flags.get(app_def, false)
 
 
 func get_unread_messages_count(chat: ChatData) -> int:
@@ -36,12 +42,17 @@ func get_total_unread_messages_count() -> int:
 
 func mark_chat_as_read(chat: ChatData) -> void:
 	unread_chats_messages[chat] = 0
+	if get_total_unread_messages_count() == 0:
+		unread_app_flags.erase(chat_app_definition)
 	unread_notifications_count_changed.emit()
 
 
-func reset_unread_notifications_count(app: App.Type) -> void:
-	unread_notifications[app] = 0
-	unread_notifications_count_changed.emit()
+func reset_app_notification(app_def: AppDefinition) -> void:
+	if app_def == chat_app_definition:
+		return
+	
+	if unread_app_flags.erase(app_def):
+		unread_notifications_count_changed.emit()
 
 
 func get_or_add_chat_history(chat: ChatData, initial_messages: Array[MessageData]) -> Array[MessageData]:
@@ -63,14 +74,16 @@ func register_new_message(chat: ChatData, message: MessageData) -> void:
 		return
 	
 	unread_chats_messages[chat] = unread_chats_messages.get(chat, 0) + 1
+	unread_app_flags[chat_app_definition] = true
 	unread_notifications_count_changed.emit()
 
 
 func send_notification(noti: NotificationData) -> void:
-	notification_requested.emit(noti)
-	if [App.Type.NONE, App.Type.CHAT].has(noti.app_target):
+	if not noti.app_target:
 		return
-	unread_notifications[noti.app_target] = unread_notifications.get(noti.app_target, 0) + 1
+	
+	notification_requested.emit(noti)
+	unread_app_flags[noti.app_target] = true
 	unread_notifications_count_changed.emit()
 
 

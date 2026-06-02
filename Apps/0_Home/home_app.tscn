@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://mxrcjhfkf1o7" path="res://_Assets/Image/App Icons 256x265/message_app_icon.png" id="2_4h0ds"]
 [ext_resource type="Texture2D" uid="uid://cmc8b48g7y2p" path="res://_Assets/Image/App Icons 256x265/phone_app_icon.png" id="3_dqfns"]
 [ext_resource type="Texture2D" uid="uid://bsl4l0x2dt81i" path="res://_Assets/Image/App Icons 256x265/gallery_app_icon.png" id="4_4j4ky"]
-[ext_resource type="PackedScene" uid="uid://mfr371hjogct" path="res://Apps/1_Chat/chat_app.tscn" id="4_6o7eo"]
+[ext_resource type="Resource" uid="uid://cy2uw8ysi3bvc" path="res://GameContent/Data/AppDefinitions/message.tres" id="4_iyp04"]
 [ext_resource type="Texture2D" uid="uid://c3ljkvgrcrrdr" path="res://_Assets/Image/App Icons 256x265/browser_app_icon.png" id="5_pb8ib"]
 [ext_resource type="Texture2D" uid="uid://b6p0abcgr5qtw" path="res://_Assets/Image/App Icons 256x265/settings_app_icon.png" id="6_iyp04"]
-[ext_resource type="PackedScene" uid="uid://cabx0s08jbd7k" path="res://Apps/2_Gallery/gallery_app.tscn" id="7_pb8ib"]
-[ext_resource type="PackedScene" uid="uid://c15x2ptcs1e2l" path="res://Apps/3_WebBrowser/web_browser.tscn" id="9_iyp04"]
+[ext_resource type="Resource" uid="uid://cttne7lpy0mrj" path="res://GameContent/Data/AppDefinitions/gallery.tres" id="7_iyp04"]
+[ext_resource type="Resource" uid="uid://bcjgxdmkx7aho" path="res://GameContent/Data/AppDefinitions/browser.tres" id="8_iyp04"]
 
 [node name="HomeApp" type="Control" unique_id=1387006928]
 layout_mode = 3
@@ -72,8 +72,7 @@ layout_mode = 2
 disabled = false
 text = "Message"
 icon = ExtResource("2_4h0ds")
-app_scene = ExtResource("4_6o7eo")
-app = 1
+app_definition = ExtResource("4_iyp04")
 
 [node name="PhoneIcon" parent="VBoxContainer/Row1" unique_id=1270008778 instance=ExtResource("1_23q5x")]
 layout_mode = 2
@@ -86,13 +85,11 @@ layout_mode = 2
 disabled = false
 text = "Gallery"
 icon = ExtResource("4_4j4ky")
-app_scene = ExtResource("7_pb8ib")
-app = 2
+app_definition = ExtResource("7_iyp04")
 
 [node name="BrowserIcon" parent="VBoxContainer/Row1" unique_id=1672676189 instance=ExtResource("1_23q5x")]
 layout_mode = 2
 disabled = false
 text = "Browser"
 icon = ExtResource("5_pb8ib")
-app_scene = ExtResource("9_iyp04")
-app = 3
+app_definition = ExtResource("8_iyp04")

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cnl5785aty0nt" path="res://_System/Main/main.gd" id="1_dft58"]
 [ext_resource type="Texture2D" uid="uid://1o7wvfa15rv8" path="res://GameContent/Assets/Images/_default_wallpaper.png" id="1_jpee4"]
 [ext_resource type="Script" uid="uid://byx3j6wqc4skd" path="res://_System/SafeZoneContainer/safe_zone_container.gd" id="2_dft58"]
+[ext_resource type="Resource" uid="uid://bftl1a4ho4nfx" path="res://GameContent/Data/AppDefinitions/home.tres" id="2_ogrti"]
 [ext_resource type="PackedScene" uid="uid://bb2mvtm3s6mkf" path="res://_System/Overlays/CallScreen/call_screen.tscn" id="3_5vu0n"]
 [ext_resource type="PackedScene" uid="uid://cl406pxpjjv11" path="res://_System/StatusBar/status_bar.tscn" id="3_dnpl7"]
 [ext_resource type="PackedScene" uid="uid://d1adlk5g8u528" path="res://_System/Overlays/NotificationBanner/notification_banner.tscn" id="4_rhpyp"]
@@ -22,7 +23,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dft58")
-home_scene = ExtResource("4_w0imb")
+home_definition = ExtResource("2_ogrti")
 
 [node name="UnsafeZoneCover" type="ColorRect" parent="." unique_id=757459562]
 layout_mode = 1

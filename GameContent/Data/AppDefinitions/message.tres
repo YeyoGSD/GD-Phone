@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AppDefinition" format=3 uid="uid://cy2uw8ysi3bvc"]
+
+[ext_resource type="Script" uid="uid://p1rgbwep1fhp" path="res://_System/Resources/AppDefinition.gd" id="1_o4oa7"]
+[ext_resource type="PackedScene" uid="uid://mfr371hjogct" path="res://Apps/1_Chat/chat_app.tscn" id="1_utnhc"]
+
+[resource]
+script = ExtResource("1_o4oa7")
+app_name = "message"
+app_scene = ExtResource("1_utnhc")
+metadata/_custom_type_script = "uid://p1rgbwep1fhp"

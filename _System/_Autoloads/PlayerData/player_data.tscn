@@ -1,13 +1,6 @@
 [gd_scene format=3 uid="uid://chl4nko4antgn"]
 
 [ext_resource type="Script" uid="uid://ivl5dsuhslml" path="res://_System/_Autoloads/PlayerData/player_data.gd" id="1_ichcc"]
-[ext_resource type="Script" uid="uid://b3yv8vn8ydvqr" path="res://_System/Resources/PhotoData.gd" id="2_mntp8"]
-[ext_resource type="Script" uid="uid://r6alea8oi7u3" path="res://_System/Resources/ChatData.gd" id="2_yc27x"]
-[ext_resource type="Resource" uid="uid://clov4e5f75fxj" path="res://GameContent/Data/Chats/anna_chat.tres" id="3_5p7sh"]
-[ext_resource type="Resource" uid="uid://d31auvid6442d" path="res://GameContent/Data/Photos/test4.tres" id="3_cgri5"]
-[ext_resource type="Resource" uid="uid://ckqjw55clsorj" path="res://GameContent/Data/Photos/test3.tres" id="4_x07v6"]
 
 [node name="PlayerData" type="Node" unique_id=1721081669]
 script = ExtResource("1_ichcc")
-unlocked_photos = Array[ExtResource("2_mntp8")]([ExtResource("3_cgri5"), ExtResource("4_x07v6")])
-unlocked_chats = Array[ExtResource("2_yc27x")]([ExtResource("3_5p7sh")])

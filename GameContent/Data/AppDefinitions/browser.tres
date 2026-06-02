@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AppDefinition" format=3 uid="uid://bcjgxdmkx7aho"]
+
+[ext_resource type="PackedScene" uid="uid://c15x2ptcs1e2l" path="res://Apps/3_WebBrowser/web_browser.tscn" id="1_muwy3"]
+[ext_resource type="Script" uid="uid://p1rgbwep1fhp" path="res://_System/Resources/AppDefinition.gd" id="1_s2k7l"]
+
+[resource]
+script = ExtResource("1_s2k7l")
+app_name = "browser"
+app_scene = ExtResource("1_muwy3")
+metadata/_custom_type_script = "uid://p1rgbwep1fhp"

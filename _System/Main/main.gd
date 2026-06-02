@@ -5,11 +5,11 @@ extends Control
 @onready var call_screen: CallScreen = %CallScreen
 @onready var notification_banner: NotificationBanner = %NotificationBanner
 
-@export var home_scene: PackedScene
+@export var home_definition: AppDefinition
 
 func _connect_signals() -> void:
 	home_button.pressed.connect(func() -> void:
-		_open_app(home_scene))
+		_open_app(home_definition))
 	SignalBus.open_app_requested.connect(_open_app)
 	SignalBus.open_webpage_requested.connect(_open_webpage)
 	PlayerData.call_registered.connect(_on_call_registered)
@@ -20,9 +20,12 @@ func _ready() -> void:
 	_connect_signals()
 
 
-func _open_app(scene: PackedScene) -> Node:
+func _open_app(app_def: AppDefinition) -> Node:
 	_clear_app_container()
 	
+	PlayerData.reset_app_notification(app_def)
+	
+	var scene := app_def.app_scene
 	var new_app := scene.instantiate()
 	app_container.add_child(new_app)
 	return new_app
@@ -34,8 +37,8 @@ func _clear_app_container() -> void:
 
 
 func _open_webpage(webpage: WebpageData) -> void:
-	const WEB_BROWSER_SCENE = preload("uid://c15x2ptcs1e2l")
-	var browser := _open_app(WEB_BROWSER_SCENE) as WebBrowserApp
+	const WEB_BROWSER_DEFINITION = preload("uid://bcjgxdmkx7aho")
+	var browser := _open_app(WEB_BROWSER_DEFINITION) as WebBrowserApp
 	browser.navigate_to_page(webpage)
 	PlayerData.unlock_webpage(webpage)
 
